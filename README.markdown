@@ -14,7 +14,7 @@ You'll first need to make some minor changes in **config.php**, mainly setting t
 
 Add a video file to your source folder, then you should be able to visit index.php from your web browser and run the conversion test.
 
-A sample video can be downloaded from [http://wp.me/a1Xgia-3W](http://example.com/ "Sample video file download") if you don't have one to test with.
+A sample video can be downloaded from [http://wp.me/a1Xgia-3W](http://wp.me/a1Xgia-3W "Sample video file download") if you don't have one to test with.
 
 Additional information and details can be found at [MyOwnHomeServer.com](http://myownhomeserver.com "MyOwnHomeServer.com").
 
