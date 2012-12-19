@@ -1,6 +1,8 @@
 <?php
 /**
  * Configuration File
+ *
+ * @ver     0.1
  */
 define('DS', DIRECTORY_SEPARATOR);
 
@@ -8,7 +10,7 @@ define('BASE_PATH', realpath(dirname(__FILE__)) . DS);
 
 $_protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";
   
-define('BASE_URL', $_protocol ."://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+define('BASE_URL', $_protocol ."://". $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) .'/');
 
 // Videos to convert path
 define('SOURCE_PATH', BASE_PATH . 'source'. DS);
@@ -26,10 +28,10 @@ define('POST_URL', BASE_URL .'process.php');
 define('EXEC_URL', BASE_URL .'ffmpegExec.php');
 
 // FFMPEG Path (ffmpeg.exe)
-define('FFMPEG_PATH', 'C:\\ffmpeg\\bin\\ffmpeg.exe');
+define('FFMPEG_PATH', 'C:\ffmpeg\bin\ffmpeg.exe');
 
-// FFMPEG Password
-define('FFMPEG_PW', sha1('123abc'));
+// FFMPEG Password (Change the value 't^$bG1c4=9u63yyKLmW7Q71tu17p5q' with something new!)
+define('FFMPEG_PW', sha1('t^$bG1c4=9u63yyKLmW7Q71tu17p5q'));
 
 if( !file_exists(SOURCE_PATH) )
     mkdir(SOURCE_PATH, 0755, true);

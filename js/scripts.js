@@ -1,5 +1,5 @@
 (function($){
-    var topLoader, startstopTimer, startstopCurrent = 0;;
+    var fkey, topLoader, startstopTimer, startstopCurrent = 0;;
     var fkeys=[];
     // Padding function
     function pad(number, length) {
@@ -23,7 +23,8 @@
     
     function convertVideo(el){
         var filename = el.data('filename');
-        var fkey     = el.data('fkey');
+            fkey     = el.data('fkey');
+        var params   = $('#ffmpeg_params').val();
         fkeys.push(fkey);
         
         $.ajax(jsNS.post_url, {
@@ -33,11 +34,13 @@
             data    : { 
                 'filename'  : filename,
                 'fkey'      : fkey,
-                'type'      : 'convert'
+                'type'      : 'convert',
+                'params'    : params
             },
             success : function(data){
-                
+                // Delay start of polling so server can write status log file....
                 startPolling(data);
+                
                 //console.log(jQuery.ajax.data);
             },
             error   : function(){
@@ -46,14 +49,14 @@
         });
     }
 
-    function pollStatus(fkey,tmpTime){ // Delete tmpTime!!!
+    function pollStatus(fkey){ // Delete tmpTime!!!
         var statusData;
         
         $.ajax(jsNS.post_url, {
             type    : 'POST',
             dataType : 'json',
             async   : false,
-            data    : { 'fkey' : fkey, 'type' : 'status', 'tmpTime' : tmpTime },
+            data    : { 'fkey' : fkey, 'type' : 'status' },
             success : function(data){
                 statusData = data;
             },
@@ -66,13 +69,12 @@
     }
     
     function startPolling(data){
-        var currentTime, totalTime, hrCurrentTime, hrTotalTime, statData, intPoll, fkey, timer, count;
+        var currentTime, totalTime, hrCurrentTime, hrTotalTime, statData, intPoll, timer, count;
         count = 0;
 
         currentTime = data.time_encoded;
         totalTime   = data.time_total;
-        fkey        = data.fkey;
-
+        
         timer = $.timer(function() {
 		    var min     = parseInt(startstopCurrent/6000);
 		    var sec     = parseInt(startstopCurrent/100)-(min*60);
@@ -87,6 +89,7 @@
                 statData = pollStatus(fkey, currentTime);
                 //console.log(statData);
                 if( !statData ){
+                    console.log(fkey);
                     alert('Bad data!');
                     console.log(statData);
                     clearInterval(intPoll);

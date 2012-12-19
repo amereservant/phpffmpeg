@@ -78,9 +78,8 @@ button { width:auto; overflow:visible }
 
 /* Ok, this is where the fun starts.
 -------------------------------------------------------------------------------*/
-#status { display:none }
-#progress {
-width: 150px;
-height: 150px;
-margin-bottom: 32px;
-}
+body { font-family:Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif; padding:0 15px; }
+h1 { font-size:2em; margin:10px 0px }
+#progress { width:150px; height:150px; margin-bottom:32px; }
+label { float:left; font-weight:800; margin-right:15px; }
+#source_videos { display:block; margin:10px 5px }

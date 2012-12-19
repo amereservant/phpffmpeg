@@ -36,14 +36,13 @@ $fkey = time();
             <!-- Progress Bar -->
             <div id="progress"></div>
             <ul id="source_videos">
-                <li><button data-filename="sample.mp4" data-fkey="<?php echo hash('crc32', time() . 'sample.mp4', false); ?>">Sample Test</button></li>
             <?php foreach(_source_files() as $file) { ?>
-                <li><?php echo $file; ?> <button data-filename="<?php echo $file; ?>" data-fkey="<?php echo hash('crc32', time() . $file, false); ?>">Convert It!</button></li>
+                <li><button data-filename="<?php echo $file; ?>" data-fkey="<?php echo hash('crc32', time() . $file, false); ?>">Convert It!</button> - <?php echo $file; ?> </li>
             <?php } ?>
             </ul>
             <p>
                 <label>FFmpeg Params:</label>
-                <textarea id="ffmpeg_params" rows="10" cols="100"><?php echo '-acodec libvo_aacenc -ac 2 -ab 128 -ar 22050 -s 1024x768 -vcodec libx264 -fpre "C:\ffmpeg\presets\libx264-ipod640.ffpreset" -b 1200k -f mp4 -threads 0'; ?></textarea>
+                <textarea id="ffmpeg_params" rows="3" cols="120"><?php echo '-acodec libvo_aacenc -ac 2 -ab 128 -ar 22050 -s 1024x768 -vcodec libx264 -fpre "C:\ffmpeg\presets\libx264-ipod640.ffpreset" -b 1200k -f mp4 -threads 0'; ?></textarea>
             </p>
             
             
