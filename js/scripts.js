@@ -1,6 +1,7 @@
 (function($){
     var fkey, topLoader, startstopTimer, startstopCurrent = 0;;
     var fkeys=[];
+    
     // Padding function
     function pad(number, length) {
 	    var str = '' + number;
@@ -8,6 +9,7 @@
 	    return str;
     }
 
+    // Initialize the progress loader
     $(function(){
         topLoader = $("#progress").percentageLoader({
             width           : 150, 
@@ -38,10 +40,7 @@
                 'params'    : params
             },
             success : function(data){
-                // Delay start of polling so server can write status log file....
                 startPolling(data);
-                
-                //console.log(jQuery.ajax.data);
             },
             error   : function(){
                 alert('Request failed!');
@@ -49,7 +48,7 @@
         });
     }
 
-    function pollStatus(fkey){ // Delete tmpTime!!!
+    function pollStatus(fkey){
         var statusData;
         
         $.ajax(jsNS.post_url, {
@@ -89,9 +88,8 @@
                 statData = pollStatus(fkey, currentTime);
                 //console.log(statData);
                 if( !statData ){
-                    console.log(fkey);
                     alert('Bad data!');
-                    console.log(statData);
+                    //console.log(statData);
                     clearInterval(intPoll);
                     return false;
                 }
@@ -101,14 +99,11 @@
                 hrTotalTime   = statData.time_total_min;
                 
                 topLoader.setProgress(currentTime / totalTime);
-                
-                //topLoader.setValue(hrCurrentTime);
-                
             }
             else {
                 timer.stop();
-                alert('Finished!');
                 clearInterval(intPoll);
+                alert('Finished!');
             }
         },1000);   
     }
