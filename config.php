@@ -28,7 +28,7 @@ define('POST_URL', BASE_URL .'process.php');
 define('EXEC_URL', BASE_URL .'ffmpegExec.php');
 
 // FFMPEG Path (ffmpeg.exe)
-define('FFMPEG_PATH', 'C:\ffmpeg\bin\ffmpeg.exe');
+define('FFMPEG_PATH', BASE_PATH .'ffmpeg\bin\ffmpeg.exe');
 
 // FFMPEG Password (Change the value 't^$bG1c4=9u63yyKLmW7Q71tu17p5q' with something new!)
 define('FFMPEG_PW', sha1('t^$bG1c4=9u63yyKLmW7Q71tu17p5q'));
