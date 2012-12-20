@@ -32,7 +32,7 @@ require 'functions.php';
         </ul>
         <p>
             <label>FFmpeg Params:</label>
-            <textarea id="ffmpeg_params" rows="3" cols="120"><?php echo '-acodec libvo_aacenc -ac 2 -ab 128 -ar 22050 -s 1024x768 -vcodec libx264 -fpre "C:\ffmpeg\presets\libx264-ipod640.ffpreset" -b 1200k -f mp4 -threads 0'; ?></textarea>
+            <textarea id="ffmpeg_params" rows="3" cols="120">-acodec libvo_aacenc -ac 2 -ab 128 -ar 22050 -s 1024x768 -vcodec libx264 -fpre "<?php echo BASE_PATH; ?>ffmpeg\presets\libx264-ipod640.ffpreset" -b 1200k -f mp4 -threads 0</textarea>
         </p>
     </div>
 </body>
